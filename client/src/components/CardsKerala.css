@@ -1,0 +1,9 @@
+#navbarScrollingDropdown{
+    color: whitesmoke;
+}
+#card{
+    transition: .5s ease-in;
+}
+#card:hover{
+    transform: scale(1.02);
+}
