@@ -14,7 +14,7 @@ function Footer() {
         <Row className="mt-2">
         <h1 className="text-center text-light fw-bold mb-4">Location</h1>
           <Col lg={6}>
-            <Card.Footer className="text-muted">
+            <Card.Footer className="text-muted mb-3">
               <h1 className="text-white">Kerala Tourism</h1>
               <h3 className="text-white">Kerala, India</h3>
               <p className="text-light">Phone: 0484 245632</p>
@@ -29,8 +29,8 @@ function Footer() {
           <Col lg={6}>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2008292.2472240678!2d74.81898144314678!3d10.544245568929972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0812ffd49cf55b%3A0x64bd90fbed387c99!2sKerala!5e0!3m2!1sen!2sin!4v1726637378007!5m2!1sen!2sin"
-              width="600"
-              height="350"
+              width="100%"
+              height="100%"
               style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"

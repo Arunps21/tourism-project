@@ -13,7 +13,6 @@ import VarkalaPlace from "./images/VarkalaPlace.jpg";
 function PlaceView() {
 
   const params = useParams();
-  console.log(params);
 
   const place = [
     {
@@ -75,7 +74,7 @@ function PlaceView() {
             .map((listPlace) => (
               <>
                   <Col lg={6}>
-                    <img src={listPlace.image} alt="" style={{width:"500px",height:"700px"}}/>
+                    <img src={listPlace.image} alt="" style={{width:"100%",height:"700px"}}/>
                   </Col>
                   <Col lg={6}>
                     <h1 className="text-primary fw-bold">{listPlace.title}</h1>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Kochi from "./images/Kochi.jpeg";
@@ -12,15 +12,11 @@ import Varkala from "./images/Varkala.jpeg";
 import { Col, Container, Row } from "react-bootstrap";
 import "./CardsKerala.css";
 import { Link } from "react-router-dom";
+import componentContext from "./ComponentProvider";
 
 function CardsKerala() {
-  // search state
-  let [search, setSearch] = useState("");
 
-  // search function
-  let searchFun = (event) => {
-    setSearch(event.target.value);
-  };
+  const {component} = useContext(componentContext)
 
   const data = [
     {
@@ -85,26 +81,14 @@ function CardsKerala() {
     <>
       <Container className="mt-4">
 
-        {/* searchbox */}
-        <Row>
-          <Col>
-            <input
-              type="text"
-              placeholder="Search Here"
-              className="form-control mt-3"
-              onChange={searchFun}
-            />
-          </Col>
-        </Row>
-
         {/* cards */}
         <h1 className="text-center mb-4 mt-3 text-primary fw-bold">
           The Beauty Of Gods Own Country
         </h1>
         <Row>
-          {data.length > 0 &&
+          {data.length > 0 && 
             data.filter((sear)=>{
-              return(sear.title.toLocaleLowerCase().match(search.toLocaleLowerCase()))
+              return(sear.title.toLocaleLowerCase().match(component.toLocaleLowerCase()))
             })
             .map((list) => {
                 return (

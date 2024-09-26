@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -9,23 +9,38 @@ import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Register from "./Register";
 import Login from "./Login";
+import componentContext from "./ComponentProvider";
 
 function NavbarPage() {
   const [show, setShow] = useState(false);
 
-  const [isRegister,setIsRegister] = useState(false)
+  const [isRegister, setIsRegister] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  let modalFun=()=>{
-    setIsRegister(!isRegister)
-  }
+  const {setComponent}=useContext(componentContext)
 
+  //handle search state
+  const [handle,setHandle] = useState("")
+
+  let modalFun = () => {
+    setIsRegister(!isRegister);
+  };
+
+  // search function
+  let searchFun = (event) => {
+    setHandle(event.target.value);
+  };
+
+  //handle search function
+  let handleSearch=()=>{
+    setComponent(handle)
+  }
 
   return (
     <>
-      <Navbar expand="lg" className="bg-primary" >
+      <Navbar expand="lg" className="bg-primary">
         <Container fluid>
           <Navbar.Brand href="#" className="text-white fw-bold fs-2">
             Kerala Tourism
@@ -61,8 +76,9 @@ function NavbarPage() {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                onChange={searchFun}
               />
-              <Button variant="light">Search</Button>
+              <Button variant="light" onClick={handleSearch}>Search</Button>
             </Form>
           </Navbar.Collapse>
         </Container>
@@ -73,9 +89,11 @@ function NavbarPage() {
             <Modal.Title>{isRegister ? "Register" : "Login"}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {
-              isRegister ? <Register toggleLogin={modalFun}/> : <Login toggleRegister={modalFun}/>
-            }
+            {isRegister ? (
+              <Register toggleLogin={modalFun} />
+            ) : (
+              <Login toggleRegister={modalFun} />
+            )}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={handleClose}>
