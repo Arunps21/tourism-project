@@ -15,8 +15,7 @@ import { Link } from "react-router-dom";
 import componentContext from "./ComponentProvider";
 
 function CardsKerala() {
-
-  const {component} = useContext(componentContext)
+  const { component } = useContext(componentContext);
 
   const data = [
     {
@@ -80,39 +79,43 @@ function CardsKerala() {
   return (
     <>
       <Container className="mt-4">
-
         {/* cards */}
         <h1 className="text-center mb-4 mt-3 text-primary fw-bold">
           The Beauty Of Gods Own Country
         </h1>
         <Row>
-          {data.length > 0 && 
-            data.filter((sear)=>{
-              return(sear.title.toLocaleLowerCase().match(component.toLocaleLowerCase()))
-            })
-            .map((list) => {
+          {data.length > 0 &&
+            data
+              .filter((sear) => {
+                return sear.title
+                  .toLocaleLowerCase()
+                  .match(component.toLocaleLowerCase());
+              })
+              .map((list) => {
                 return (
                   <Col lg={3} className="mb-4 mt-2" key={list.id}>
-                    <Link to={`/PlaceView/${list.id}`} className="text-decoration-none">
-                      <Card
-                        style={{ width: "100%" }}
-                        className="border-1 border-info shadow"
-                        id="card"
-                      >
-                        <Card.Img variant="top" src={list.imageUrl} />
-                        <Card.Body align="center">
-                          <Card.Title className="text-primary fw-bold">
-                            {list.title}
-                          </Card.Title>
-                          <Card.Text>{list.description}</Card.Text>
+                    <Card
+                      style={{ width: "100%" }}
+                      className="border-1 border-info shadow"
+                      id="card"
+                    >
+                      <Card.Img variant="top" src={list.imageUrl} />
+                      <Card.Body align="center">
+                        <Card.Title className="text-primary fw-bold">
+                          {list.title}
+                        </Card.Title>
+                        <Card.Text>{list.description}</Card.Text>
+                        <Link
+                          to={`/PlaceView/${list.id}`}
+                          className="text-decoration-none"
+                        >
                           <Button variant="primary">Know More</Button>
-                        </Card.Body>
-                      </Card>
-                    </Link>
+                        </Link>
+                      </Card.Body>
+                    </Card>
                   </Col>
                 );
-              })
-            }
+              })}
         </Row>
       </Container>
     </>
